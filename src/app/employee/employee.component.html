@@ -1,0 +1,74 @@
+<section style="margin-top: 30px;margin-left: 30px;">
+    <form class="row g-3 needs-validation" [formGroup]="employeForm" novalidate>
+        <div class="col-auto">
+            <input type="text" id="name" class="form-control" formControlName="name" placeholder="Name" required>
+            <div class="text-danger mt-1" *ngIf="employeForm.controls['name'].invalid && (employeForm.controls['name'].touched || employeForm.controls['name'].dirty)">
+                <span *ngIf="employeForm.controls['name'].errors?.['required']">This is required</span>
+                <span *ngIf="employeForm.controls['name'].errors?.['minlength']">Minimum 4 characters required</span>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <input type="email" id="position" class="form-control" formControlName="position" placeholder="Position" required>
+            <div class="text-danger mt-1" *ngIf="employeForm.controls['position'].invalid && (employeForm.controls['position'].touched || employeForm.controls['position'].dirty)">
+                <span *ngIf="employeForm.controls['position'].errors?.['required']">This is required</span>
+                <span *ngIf="employeForm.controls['position'].errors?.['pattern']">Valid email pattern is required</span>    
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <input type="text" id="office" class="form-control" formControlName="office" placeholder="Office" required>
+            <div class="text-danger mt-1" *ngIf="employeForm.controls['office'].invalid && (employeForm.controls['office'].touched || employeForm.controls['office'].dirty)">
+                <span *ngIf="employeForm.controls['office'].errors?.['required']">This is required</span>
+                <span *ngIf="employeForm.controls['office'].errors?.['pattern']">Ten digits are required</span>    
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <input type="text" id="salary" class="form-control" formControlName="salary" placeholder="Salary" required>
+            <div class="text-danger mt-1" *ngIf="employeForm.controls['salary'].invalid && (employeForm.controls['salary'].touched || employeForm.controls['salary'].dirty)">
+                <span *ngIf="employeForm.controls['salary'].errors?.['required']">This is required</span>
+                <span *ngIf="employeForm.controls['salary'].errors?.['pattern']">Minimum 6 characters required</span>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mt-1" (click)="submit()">{{ buttonLabel }}</button>
+          </div>
+    </form>
+</section>
+
+<div class="container mt-4">
+    <h1>Employee Table</h1>
+    <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Search employees" [(ngModel)]="searchTerm">
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Position</th>  
+            <th scope="col">Office</th>  
+            <th scope="col">Salary</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of filteredEmployees">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.position }}</td>
+            <td>{{ emp.office }}</td>
+            <td>{{ emp.salary }}</td>
+            <td>
+                <button type="button" class="btn btn-success" (click)="setUpdate(emp)">Edit</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="setDelete(emp)">Delete</button>
+            </td>
+        </tr>          
+        </tbody>
+    </table>
+</div>

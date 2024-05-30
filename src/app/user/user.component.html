@@ -1,0 +1,46 @@
+<section>
+    <form class="row g-3 needs validation" [formGroup]="userform">
+        <div class="col-md-3">
+            <label class="form-label"> Name </label>
+            <input type="text" class="form-control" formControlName="name" required>
+            <div class="text-danger" *ngIf="userform.controls['name'].invalid && (userform.controls['name'].touched || userform.controls['name'].dirty)">
+                <span *ngIf="userform.controls['name'].errors?.['required']"> This is required</span>
+                <span *ngIf="userform.controls['name'].errors?.['minlength']"> Minimum 3 charectoer required </span>
+              </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label
+            "> Email </label>
+            <input type="email" class="form-control" formControlName="email" required>
+            <div class="text-danger" *ngIf="userform.controls['email'].invalid && (userform.controls['email'].touched || userform.controls['email'].dirty)">
+                <span *ngIf="userform.controls['email'].errors?.['required']"> This is required</span>
+                <span *ngIf="userform.controls['email'].errors?.['pattern']">  Email patteren is required </span>    
+              </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label
+            "> Phone </label>
+            <input type="text" class="form-control" formControlName="phone" required>
+            <div class="text-danger" *ngIf="userform.controls['phone'].invalid && (userform.controls['phone'].touched || userform.controls['phone'].dirty)">
+                <span *ngIf="userform.controls['phone'].errors?.['required']"> This is required</span>
+                <span *ngIf="userform.controls['phone'].errors?.['pattern']"> ten digit is required </span>    
+              </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label    
+            "> password </label>
+            <input type="password" class="form-control" formControlName="password" required>
+            <div class="text-danger" *ngIf="userform.controls['password'].invalid && (userform.controls['password'].touched || userform.controls['password'].dirty)">
+                <span *ngIf="userform.controls['password'].errors?.['required']"> This is required</span>
+                <span *ngIf="userform.controls['password'].errors?.['pattern']"> Minimum 6 charectoer required </span>
+              </div>
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary" (click)="submit()"> Submit </button>
+        </div>
+    </form>
+</section>
